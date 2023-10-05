@@ -1,0 +1,38 @@
+﻿@page "/"
+@using NotesApp.Application.Interfaces
+@using NotesApp.Application.Entities
+@using NotesApp.Application.Services
+@inject INoteService NoteService
+
+@if (Notes is not null)
+{
+    <NotesList Data="Notes"/>  
+}
+
+@code
+{
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? Search { get; set; }
+    
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public int? Page { get; set; }
+    
+    private PagedList<Note>? Notes { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadNotes();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadNotes();
+    }
+
+    private async Task LoadNotes()
+    {
+        Notes = await NoteService.SearchAsync(Search ?? string.Empty, Page ?? 1);
+    }
+}

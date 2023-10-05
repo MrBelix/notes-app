@@ -1,0 +1,41 @@
+@page "/edit/{Id:int}"
+@using NotesApp.Application.Entities
+@using NotesApp.Application.Services
+@inject INoteService NoteService
+@inject NavigationManager NavigationManager
+
+<h3>Edit Note</h3>
+<EditForm Model="_model" OnValidSubmit="@SubmitHandler">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group mb-3">
+        <label for="title">Title</label>
+        <InputText id="title" class="form-control" @bind-Value="_model.Title"/>
+    </div>
+    <div class="form-group mb-3">
+        <label for="text">Text</label>
+        <InputTextArea id="text" class="form-control" @bind-Value="_model.Text"/>
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    
+    private Note _model = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await NoteService.GetByIdAsync(Id);
+
+        _model = result ?? throw new ArgumentNullException(nameof(_model));
+    }
+
+    async Task SubmitHandler()
+    {
+        await NoteService.Update(_model);
+        NavigationManager.NavigateTo("/");
+    }
+
+}

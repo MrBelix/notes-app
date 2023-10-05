@@ -1,0 +1,42 @@
+@using NotesApp.Application.Services
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@inject INoteService NoteService
+
+<PageTitle>NotesApp.Blazor</PageTitle>
+
+<div class="page">
+    <header class="main-header">
+        <a href="/create" class="btn btn-primary">New Note</a>
+        <input class="form-control" type="search" placeholder="Enter search term" @onchange="SearchInputChangedHandler">
+        <span>
+            Total Notes: @TotalNotes
+        </span>
+    </header>
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private int TotalNotes { get; set; }
+
+    protected override void OnInitialized()
+    {
+        InvokeAsync(LoadNotesCount);
+    }
+    
+    private Task LoadNotesCount()
+    {
+        TotalNotes = NoteService.GetTotalCount();
+        
+        return Task.CompletedTask;
+    }
+
+    private void SearchInputChangedHandler(ChangeEventArgs args)
+    {
+        NavigationManager.NavigateTo($"/?search={args.Value}");
+    }
+}

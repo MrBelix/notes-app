@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  webapp:
+    image: notesapp.blazor
+    restart: always
+    depends_on:
+      - database
+    build:
+      context: .
+      dockerfile: src/NotesApp.Blazor/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DATABASE__HOST: database
+      DATABASE__NAME: $DATABASE_NAME
+      DATABASE__USER: $DATABASE_USER
+      DATABASE__PASSWORD: $DATABASE_PASSWORD
+  
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: $DATABASE_PASSWORD
+      POSTGRES_USER: $DATABASE_USER
+      POSTGRES_DB: $DATABASE_NAME

@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0433A210-73D2-48FA-A7DA-EFD3C816BE38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesApp.Application", "src\NotesApp.Application\NotesApp.Application.csproj", "{634FA642-6E54-4CF9-AE97-2E1329AFCFFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesApp.Blazor", "src\NotesApp.Blazor\NotesApp.Blazor.csproj", "{8C5F8476-5891-48A2-8BA2-24CE87B0C86C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesApp.Persistence", "src\NotesApp.Persistence\NotesApp.Persistence.csproj", "{C4183474-8D84-45D2-B0E9-2EAD99C4864D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{634FA642-6E54-4CF9-AE97-2E1329AFCFFC} = {0433A210-73D2-48FA-A7DA-EFD3C816BE38}
+		{8C5F8476-5891-48A2-8BA2-24CE87B0C86C} = {0433A210-73D2-48FA-A7DA-EFD3C816BE38}
+		{C4183474-8D84-45D2-B0E9-2EAD99C4864D} = {0433A210-73D2-48FA-A7DA-EFD3C816BE38}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{634FA642-6E54-4CF9-AE97-2E1329AFCFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634FA642-6E54-4CF9-AE97-2E1329AFCFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634FA642-6E54-4CF9-AE97-2E1329AFCFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634FA642-6E54-4CF9-AE97-2E1329AFCFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5F8476-5891-48A2-8BA2-24CE87B0C86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5F8476-5891-48A2-8BA2-24CE87B0C86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5F8476-5891-48A2-8BA2-24CE87B0C86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5F8476-5891-48A2-8BA2-24CE87B0C86C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4183474-8D84-45D2-B0E9-2EAD99C4864D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4183474-8D84-45D2-B0E9-2EAD99C4864D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4183474-8D84-45D2-B0E9-2EAD99C4864D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4183474-8D84-45D2-B0E9-2EAD99C4864D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

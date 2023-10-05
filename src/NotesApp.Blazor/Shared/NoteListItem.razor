@@ -1,0 +1,32 @@
+@using NotesApp.Application.Entities
+
+<div class="card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col-4">
+                @Item.Title
+            </div>
+            <div class="col-4 text-center">
+                @Item.HumanizedTimeDifference
+            </div>
+            <div class="col-4 text-right">
+                <button class="btn btn-primary" @onclick="ViewClickHandler">View note</button>
+                <a href="/edit/@Item.Id" class="btn btn-secondary">Edit note</a>
+            </div>
+            </div>
+    </div>
+    @if (_isOpen)
+    {
+        <div class="card-body">
+            @Item.Text
+        </div>   
+    }
+</div>
+@code {
+    [Parameter]
+    public required Note Item { get; set; }
+
+    private bool _isOpen;
+
+    void ViewClickHandler() => _isOpen = !_isOpen;
+}

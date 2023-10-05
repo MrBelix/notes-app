@@ -1,0 +1,33 @@
+<nav class="mt-2 d-flex justify-content-center">
+    <ul class="pagination">
+        <li class="page-item  @(!HavePrevPage ? "disabled" : "")">
+            <a class="page-link" @onclick="() => ChangePage(CurrentPage - 1)">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" @onclick="() => ChangePage(CurrentPage)">@CurrentPage</a>
+        </li>
+        <li class="page-item @(!HaveNextPage ? "disabled" : "")">
+            <a class="page-link" @onclick="() => ChangePage(CurrentPage + 1)">Next</a>
+        </li>
+    </ul>
+</nav>
+
+@code {
+    [Parameter]
+    public int CurrentPage { get; set; } = 1;
+    
+    [Parameter]
+    public bool HaveNextPage { get; set; }
+    
+    [Parameter]
+    public bool HavePrevPage { get; set; }
+    
+    [Parameter]
+    public EventCallback<int> OnPageChanged { get; set; }
+
+    private async Task ChangePage(int page)
+    {
+        await OnPageChanged.InvokeAsync(page);
+    }
+
+}
