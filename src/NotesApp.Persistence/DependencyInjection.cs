@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using NotesApp.Application.Services;
-using NotesApp.Persistence.Services;
+using NotesApp.Application.Interfaces;
+using NotesApp.Persistence.Repositories;
 
 namespace NotesApp.Persistence;
 
@@ -18,7 +18,7 @@ public static class DependencyInjection
         services.AddDbContextFactory<ApplicationDbContext>(options =>
             options.UseNpgsql(configuration.ToString()));
 
-        services.AddScoped<INoteService, EfNoteService>();
+        services.AddScoped<INoteRepository, EfNoteRepository>();
         
         return services;
     }

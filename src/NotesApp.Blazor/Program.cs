@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NotesApp.Application;
 using NotesApp.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services
+    .AddApplication()
     .AddPersistence(builder.Configuration.GetSection("DATABASE").Get<DatabaseConfiguration>());
 
 var app = builder.Build();

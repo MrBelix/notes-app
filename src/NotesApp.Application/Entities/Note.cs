@@ -8,22 +8,15 @@ public class Note
 {
    [Key]
    public int Id { get; set; }
-   
+
    [Required(ErrorMessage = "Title is required")]
    [MaxLength(128, ErrorMessage = "Title is too long.")]
-   public string Title { get; set; }
+   public string Title { get; set; } = string.Empty;
    
    [Required(ErrorMessage = "Text is required")]
-   public string Text { get; set; }
+   public string Text { get; set; } = string.Empty;
    
    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
    
-   public string HumanizedTimeDifference
-   {
-      get
-      {
-         var diff = DateTime.UtcNow.Subtract(CreatedAt);
-         return diff.Humanize();
-      }
-   }
+   public string HumanizedTimeDifference => DateTime.UtcNow.Subtract(CreatedAt).Humanize();
 }

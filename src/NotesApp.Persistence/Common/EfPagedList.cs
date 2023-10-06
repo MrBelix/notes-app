@@ -1,20 +1,22 @@
 using Microsoft.EntityFrameworkCore;
-using NotesApp.Application.Interfaces;
+using NotesApp.Application.Common;
 
 namespace NotesApp.Persistence.Common;
 
 public class EfPagedList<T> : PagedList<T>
 {
-    private EfPagedList(List<T> items, int page, int pageSize, int totalCount)
+    private EfPagedList(List<T> items, int page, int pageSize, int totalCount) 
+        : base(items, page, pageSize, totalCount)
     {
-        Items = items;
-        Page = page;
-        PageSize = pageSize;
-        TotalCount = totalCount;
     }
     
     public static async Task<EfPagedList<T>> CreateAsync(IQueryable<T> query, int page, int pageSize)
     {
+        if (page < 1)
+        {
+            throw new ArgumentException("Page must be greater than or equal to 1", nameof(page));
+        }
+        
         var totalCount = await query.CountAsync();
         var items = await query
             .Skip((page - 1) * pageSize)

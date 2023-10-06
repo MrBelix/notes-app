@@ -3,24 +3,32 @@
 @using Microsoft.AspNetCore.WebUtilities
 @using System.Net
 @using Microsoft.AspNetCore.Http.Extensions
+@using NotesApp.Application.Common
 @inject NavigationManager Navigation
 
 
-<h3>Notes</h3>
-<section class="d-flex flex-column gap-2">
-    @foreach (var item in Data.Items)
-    {
-        <NoteListItem Item="item"/>
-    }
-</section>
-<Pagination 
-    CurrentPage="Data.Page" 
-    HaveNextPage="Data.HaveNextPage" 
-    HavePrevPage="Data.HavePrevPage"
-    OnPageChanged="PageChangedCallback"
-    />
+@if (Data.Items.Count < 1)
+{
+    <h2 class="text-center">Notes Not Found</h2>
+}
+else
+{
+    <h3>Notes</h3>
+    <section class="d-flex flex-column gap-2">
+        @foreach (var item in Data.Items)
+        {
+            <NoteListItem Item="item"/>
+        }
+    </section>
+    <Pagination
+        CurrentPage="Data.Page"
+        HaveNextPage="Data.HaveNextPage"
+        HavePrevPage="Data.HavePrevPage"
+        OnPageChanged="PageChangedCallback"/>   
+}
 
 @code {
+
     [Parameter]
     public required PagedList<Note> Data { get; set; }
 
@@ -28,8 +36,9 @@
     {
         var query = QueryHelpers.ParseQuery(new Uri(Navigation.Uri).Query);
         query["page"] = page.ToString();
-        
+
         Navigation.NavigateTo(new QueryBuilder(query)
             .ToString());
     }
+
 }

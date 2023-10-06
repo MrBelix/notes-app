@@ -1,18 +1,18 @@
 using Microsoft.EntityFrameworkCore;
+using NotesApp.Application.Common;
 using NotesApp.Application.Entities;
 using NotesApp.Application.Interfaces;
-using NotesApp.Application.Services;
 using NotesApp.Persistence.Common;
 
-namespace NotesApp.Persistence.Services;
+namespace NotesApp.Persistence.Repositories;
 
-public class EfNoteService: INoteService
+public class EfNoteRepository: INoteRepository
 {
     private const int NotesPerPage = 10;
     
     private readonly ApplicationDbContext _context;
 
-    public EfNoteService(ApplicationDbContext context)
+    public EfNoteRepository(ApplicationDbContext context)
     {
         _context = context;
     }
@@ -30,7 +30,7 @@ public class EfNoteService: INoteService
         
         return await EfPagedList<Note>.CreateAsync(query, page, NotesPerPage);
     }
-
+    
     public int GetTotalCount()
     {
         return _context.Notes.Count();

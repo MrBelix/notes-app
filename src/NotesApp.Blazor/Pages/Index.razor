@@ -1,8 +1,8 @@
 ﻿@page "/"
-@using NotesApp.Application.Interfaces
 @using NotesApp.Application.Entities
 @using NotesApp.Application.Services
-@inject INoteService NoteService
+@using NotesApp.Application.Common
+@inject NoteService NoteService
 
 @if (Notes is not null)
 {

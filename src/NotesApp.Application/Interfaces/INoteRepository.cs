@@ -1,9 +1,9 @@
+using NotesApp.Application.Common;
 using NotesApp.Application.Entities;
-using NotesApp.Application.Interfaces;
 
-namespace NotesApp.Application.Services;
+namespace NotesApp.Application.Interfaces;
 
-public interface INoteService
+public interface INoteRepository
 {
     Task<PagedList<Note>> SearchAsync(string query, int page);
     
